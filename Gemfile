@@ -5,7 +5,9 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+# for heroku uncomment
+# gem 'pg'
+gem 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
