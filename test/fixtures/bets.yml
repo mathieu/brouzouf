@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  expiration_date: 2011-06-21 12:15:17
+  user: 
+
+two:
+  title: MyString
+  description: MyText
+  expiration_date: 2011-06-21 12:15:17
+  user: 

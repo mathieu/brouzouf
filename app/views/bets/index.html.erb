@@ -1,0 +1,29 @@
+<h1>Listing bets</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Expiration date</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bets.each do |bet| %>
+  <tr>
+    <td><%= bet.title %></td>
+    <td><%= bet.description %></td>
+    <td><%= bet.expiration_date %></td>
+    <td><%= bet.user %></td>
+    <td><%= link_to 'Show', bet %></td>
+    <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
+    <td><%= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bet', new_bet_path %>

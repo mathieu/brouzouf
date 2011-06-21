@@ -1,4 +1,6 @@
 Brouzouf::Application.routes.draw do
+  resources :bets
+
   get "home/index"
 
   devise_for :users

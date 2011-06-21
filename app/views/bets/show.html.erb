@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @bet.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @bet.description %>
+</p>
+
+<p>
+  <b>Expiration date:</b>
+  <%= @bet.expiration_date %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @bet.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_bet_path(@bet) %> |
+<%= link_to 'Back', bets_path %>
