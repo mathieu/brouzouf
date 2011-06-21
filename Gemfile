@@ -9,6 +9,8 @@ gem 'rails', '3.0.9'
 # gem 'pg'
 gem 'sqlite3'
 
+gem 'devise', '1.3.4'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
