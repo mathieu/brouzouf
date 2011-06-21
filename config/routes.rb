@@ -1,4 +1,6 @@
 Brouzouf::Application.routes.draw do
+  resources :choices
+
   resources :bets
 
   get "home/index"
