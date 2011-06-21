@@ -1,4 +1,6 @@
 Brouzouf::Application.routes.draw do
+  resources :wagers
+
   resources :choices
 
   resources :bets
