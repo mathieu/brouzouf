@@ -7,7 +7,21 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<div id="header">
+  <div id="user_login_box" style="float:right">
 
+    <% if user_signed_in? %>
+          <%= current_user.email %> |
+          <%= link_to 'My info', edit_user_registration_path %> |
+          <%= link_to 'Sign out', destroy_user_session_path %>
+      <% end %>
+      <% unless user_signed_in? %>
+
+          <%= link_to 'Sign In', new_user_session_path %> |
+          <%= link_to 'Sign Up', new_user_registration_path %>
+     <% end %>
+    </div>
+</div>
 <p class="notice"><%= notice %></p>
 
 <p class="alert"><%= alert %></p>
