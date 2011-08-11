@@ -1,4 +1,8 @@
 class BetsController < ApplicationController
+  
+  before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :edit]
+  
+  
   # GET /bets
   # GET /bets.xml
   def index
@@ -41,6 +45,8 @@ class BetsController < ApplicationController
   # POST /bets.xml
   def create
     @bet = Bet.new(params[:bet])
+    # associate connected user with newly created bet
+    @bet.user = current_user
 
     respond_to do |format|
       if @bet.save
