@@ -7,7 +7,12 @@ Brouzouf::Application.routes.draw do
 
   get "home/index"
 
-  devise_for :users
+  devise_for :users do
+  
+    #:controllers => { :sessions => 'users/sessions' } 
+    get 'users', :to => 'users#index', :as => :user_root # Rails 3
+  
+  end
 
   root :to => "home#index"
 
