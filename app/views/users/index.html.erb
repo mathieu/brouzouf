@@ -1,0 +1,22 @@
+
+<h1>User HomePage</h1>
+
+
+<ul>
+	
+	<li><%= link_to 'Modify my info', edit_user_registration_path %></li>
+	<li><%= link_to 'New Bet', new_bet_path %></li>
+
+</ul>
+
+<h2>My Bets</h2>
+
+<%if(current_user.bets.count == 0 )%>
+	No bet created yet. <%= link_to "Create your first bet now !", new_bet_url%> 
+<%else%>
+	<ul>
+	<% current_user.bets.each do |bet| %>
+		<li> <%=bet.title%> - <%=link_to "Edit", edit_bet_path(bet) %> </li>
+	<%end%>
+	</ul>
+<%end%>
