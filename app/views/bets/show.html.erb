@@ -17,9 +17,6 @@
 
 <p>
   <b>User:</b>
-  <%= @bet.user %>
+  <%= link_to @bet.user.name, user_path(@bet.user)  %>
 </p>
 
-
-<%= link_to 'Edit', edit_bet_path(@bet) %> |
-<%= link_to 'Back', bets_path %>
