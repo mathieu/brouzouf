@@ -6,14 +6,14 @@ Brouzouf::Application.routes.draw do
   resources :bets
 
   get "home/index"
-
+ 
   devise_for :users do
-  
-    #:controllers => { :sessions => 'users/sessions' } 
-    get 'users', :to => 'users#index', :as => :user_root # Rails 3
-  
+    get 'users', :to => 'users#index', :as => :user_root # Rails 3 
+    match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   end
 
+  
+  
   root :to => "home#index"
 
   # The priority is based upon order of creation:
