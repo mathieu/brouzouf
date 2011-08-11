@@ -39,6 +39,11 @@ class BetsController < ApplicationController
   # GET /bets/1/edit
   def edit
     @bet = Bet.find(params[:id])
+    
+    if(@bet.user != current_user)
+      redirect_to( "/users", :alert => "You don't have rigth to modify this bet.")
+    end  
+      
   end
 
   # POST /bets
