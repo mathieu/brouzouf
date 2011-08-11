@@ -10,4 +10,10 @@ class UsersController < Devise::SessionsController
    logger.debug 'User HomePage actions'
  end
  
+  def show
+    logger.debug 'Public user display'
+    @user = User.find(params[:id])
+  end
+ 
+ 
 end

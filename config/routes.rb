@@ -11,6 +11,7 @@ Brouzouf::Application.routes.draw do
   
     #:controllers => { :sessions => 'users/sessions' } 
     get 'users', :to => 'users#index', :as => :user_root # Rails 3
+    match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   
   end
 
