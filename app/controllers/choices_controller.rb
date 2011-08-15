@@ -1,6 +1,6 @@
 class ChoicesController < ApplicationController
   
-  before_filter :authenticate_user!, :only => [:add_choice, :create, :update, :destroy, :edit]
+  before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :edit]
   
 
   # GET /choices/1/edit
@@ -11,12 +11,7 @@ class ChoicesController < ApplicationController
   
   def new
     @bet =Bet.find(params[:bet_id])
-    @choice = @bet.choices.build
-  
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @choice }
-    end
+    @choice = @bet.choices.build  
   end
   
   
@@ -27,7 +22,6 @@ class ChoicesController < ApplicationController
     @bet =Bet.find(params[:bet_id])
     @choice.bet = @bet
     
-  
     if @choice.save
       redirect_to(edit_bet_path(@bet), :notice => 'Choice was successfully created.')
     else
@@ -37,7 +31,6 @@ class ChoicesController < ApplicationController
   end
 
   # PUT /choices/1
-  # PUT /choices/1.xml
   def update
     @choice = Choice.find(params[:id])
 
@@ -53,14 +46,9 @@ class ChoicesController < ApplicationController
   end
 
   # DELETE /choices/1
-  # DELETE /choices/1.xml
   def destroy
     @choice = Choice.find(params[:id])
     @choice.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(choices_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(choices_url)
   end
 end
