@@ -1,4 +1,5 @@
-<%= form_for(@choice) do |f| %>
+
+<%= form_for([@bet, @choice]) do |f| %>
   <% if @choice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
@@ -15,10 +16,7 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :bet %><br />
-    <%= f.text_field :bet %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

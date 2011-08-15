@@ -1,56 +1,39 @@
 class ChoicesController < ApplicationController
-  # GET /choices
-  # GET /choices.xml
-  def index
-    @choices = Choice.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @choices }
-    end
-  end
-
-  # GET /choices/1
-  # GET /choices/1.xml
-  def show
-    @choice = Choice.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @choice }
-    end
-  end
-
-  # GET /choices/new
-  # GET /choices/new.xml
-  def new
-    @choice = Choice.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @choice }
-    end
-  end
+  
+  before_filter :authenticate_user!, :only => [:add_choice, :create, :update, :destroy, :edit]
+  
 
   # GET /choices/1/edit
   def edit
     @choice = Choice.find(params[:id])
   end
 
+  
+  def new
+    @bet =Bet.find(params[:bet_id])
+    @choice = @bet.choices.build
+  
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @choice }
+    end
+  end
+  
+  
   # POST /choices
   # POST /choices.xml
   def create
     @choice = Choice.new(params[:choice])
-
-    respond_to do |format|
-      if @choice.save
-        format.html { redirect_to(@choice, :notice => 'Choice was successfully created.') }
-        format.xml  { render :xml => @choice, :status => :created, :location => @choice }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @choice.errors, :status => :unprocessable_entity }
-      end
+    @bet =Bet.find(params[:bet_id])
+    @choice.bet = @bet
+    
+  
+    if @choice.save
+      redirect_to(@bet, :notice => 'Choice was successfully created.')
+    else
+      render :action => "new"
     end
+    
   end
 
   # PUT /choices/1

@@ -91,4 +91,6 @@ class BetsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
 end
