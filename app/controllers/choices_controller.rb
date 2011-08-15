@@ -5,6 +5,7 @@ class ChoicesController < ApplicationController
 
   # GET /choices/1/edit
   def edit
+    @bet =Bet.find(params[:bet_id])
     @choice = Choice.find(params[:id])
   end
 
@@ -33,15 +34,11 @@ class ChoicesController < ApplicationController
   # PUT /choices/1
   def update
     @choice = Choice.find(params[:id])
-
-    respond_to do |format|
-      if @choice.update_attributes(params[:choice])
-        format.html { redirect_to(@choice, :notice => 'Choice was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @choice.errors, :status => :unprocessable_entity }
-      end
+    
+    if @choice.update_attributes(params[:choice])
+      redirect_to(edit_bet_path(params[:bet_id]), :notice => 'Choice was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
