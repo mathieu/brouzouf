@@ -1,3 +1,16 @@
 <h1>Public User Page</h2>
 	
 <h2>name=<%=@user.name%> - email=<%=@user.email%> </h2>	
+
+
+<h2>Bets created</h2>
+
+<%if(@user.bets.count == 0 )%>
+	No bet created yet. 
+<%else%>
+	<ul>
+	<% @user.bets.each do |bet| %>
+		<li><%=bet.title%></li>
+	<%end%>
+	</ul>
+<%end%>
