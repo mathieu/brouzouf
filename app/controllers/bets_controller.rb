@@ -69,15 +69,11 @@ class BetsController < ApplicationController
   def update
     @bet = Bet.find(params[:id])
 
-    respond_to do |format|
       if @bet.update_attributes(params[:bet])
-        format.html { redirect_to(@bet, :notice => 'Bet was successfully updated.') }
-        format.xml  { head :ok }
+        redirect_to(user_root_url, :notice => 'Bet was successfully updated.')
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @bet.errors, :status => :unprocessable_entity }
+        render :action => "edit"
       end
-    end
   end
 
   # DELETE /bets/1
