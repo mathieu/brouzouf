@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'name'
   attr_accessor :login
 
-  has_many :bets
-  has_many :bids
+  has_many :bets, :order => "created_at"
+  has_many :bids, :order => "created_at"
 
 
   protected
