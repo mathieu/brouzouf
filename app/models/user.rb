@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
   has_many :bets
-  has_many :wagers
+  has_many :bids
 end

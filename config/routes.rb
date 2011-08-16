@@ -1,5 +1,5 @@
 Brouzouf::Application.routes.draw do
-  resources :wagers
+  resources :bids
 
     
   resources :bets do
