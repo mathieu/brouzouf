@@ -22,11 +22,24 @@
 
 
 <%if @bet.choices.count == 0 %>
-	No choice for this bet.
+	<p>No choice for this bet.</p>
 <%else%>
-	<% @bet.choices.each do |choice| %>
-		<ul>
-			<li><%=choice.description%></li>
-		</ul>
-	<%end%>
+
+    <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
+
+        <ul>
+            <% @bet.choices.each do |choice| %>
+
+			    <li>
+                    <%= radio_button_tag(:choice_id, choice.id, true) %>
+                    <%= label_tag(:age_child, choice.description) %>
+                </li>
+
+	        <%end%>
+        </ul>
+
+        <%= submit_tag("Make a bid") if @bet.state == "OPEN" %>
+
+    <%end%>
+
 <%end%>

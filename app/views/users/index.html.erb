@@ -16,7 +16,15 @@
 <%else%>
 	<ul>
 	<% current_user.bets.each do |bet| %>
-		<li> <%=bet.title%> - <%=link_to "Edit", edit_bet_path(bet) %> </li>
+		<li> <%=bet.title%> - <%=link_to "Edit", edit_bet_path(bet) %> | <%=link_to "Show", bet_path(bet) %> </li>
 	<%end%>
 	</ul>
 <%end%>
+
+<h2>My Bids</h2>
+<ul>
+  <% current_user.bids.each do |bid| %>
+		<li> <%=bid.choice.bet.title%>  - <%=bid.choice.description%> </li>
+	<%end%>
+</ul>
+

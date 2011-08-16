@@ -100,6 +100,22 @@ class BetsController < ApplicationController
   end
 
 
+  def make_a_bid
+    logger.debug "Current User make a bid"
+
+    choice = Choice.find(params[:choice_id])
+
+    bid = Bid.new()
+    bid.user = current_user
+    bid.choice = choice
+
+    if(bid.save)
+      redirect_to(bet_url(choice.bet.id), :notice => 'Your bid was successfully saved')
+    else
+      redirect_to(bet_url(choice.bet.id), :warn => 'Error while saving your bid')
+    end
+
+  end
 
 
   

@@ -17,7 +17,6 @@ class ChoicesController < ApplicationController
   
   
   # POST /choices
-  # POST /choices.xml
   def create
     @choice = Choice.new(params[:choice])
     @bet =Bet.find(params[:bet_id])
@@ -48,4 +47,7 @@ class ChoicesController < ApplicationController
     @choice.destroy
     redirect_to(choices_url)
   end
+
+
+
 end
