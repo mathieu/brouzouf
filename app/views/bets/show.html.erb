@@ -27,12 +27,15 @@
 
     <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
+        <% nb_bids=0 %>
         <ul>
             <% @bet.choices.each do |choice| %>
 
 			    <li>
                     <%= radio_button_tag(:choice_id, choice.id, true) %>
                     <%= label_tag(:age_child, choice.description) %>
+                    (<%= pluralize(choice.bids.count, 'bid') %>)
+
                 </li>
 
 	        <%end%>
