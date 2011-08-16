@@ -31,13 +31,14 @@ class BetsController < ApplicationController
   # POST /bets
   def create
     @bet = Bet.new(params[:bet])
+
     # associate connected user with newly created bet
     @bet.user = current_user
 
     if @bet.save
-      format.html { redirect_to(@bet, :notice => 'Bet was successfully created.') }
+      redirect_to(user_root_url, :notice => 'Bet was successfully created.')
     else
-      format.html { render :action => "new" }
+      render :action => "new"
     end
   end
 
@@ -45,11 +46,11 @@ class BetsController < ApplicationController
   def update
     @bet = Bet.find(params[:id])
 
-      if @bet.update_attributes(params[:bet])
-        redirect_to(user_root_url, :notice => 'Bet was successfully updated.')
-      else
-        render :action => "edit"
-      end
+    if @bet.update_attributes(params[:bet])
+      redirect_to(user_root_url, :notice => 'Bet was successfully updated.')
+    else
+      render :action => "edit"
+    end
   end
 
   # DELETE /bets/1
@@ -59,6 +60,48 @@ class BetsController < ApplicationController
 
     redirect_to(bets_url)
   end
+
+  def set_bet_open
+    logger.debug "Set the bet's state to OPEN"
+    bet = Bet.find(params[:id])
+    bet.state = "OPEN"
+
+    if bet.save
+      redirect_to(user_root_url, :notice => bet.title + ' was opened.')
+    else
+      render :action => "edit"
+    end
+
+  end
+
+  def set_bet_close
+    logger.debug "Set the bet's state to CLOSE"
+
+    bet = Bet.find(params[:id])
+    bet.state = "CLOSE"
+
+    if bet.save
+      redirect_to(user_root_url, :notice => bet.title + ' was closed.')
+    else
+      render :action => "edit"
+    end
+  end
+
+  def set_bet_creation
+    logger.debug "Set the bet's state to CREATION"
+    bet = Bet.find(params[:id])
+    bet.state = "CREATION"
+
+    if bet.save
+      redirect_to(user_root_url, :notice => bet.title + ' was in creation mode again.')
+    else
+      render :action => "edit"
+    end
+  end
+
+
+
+
   
   
 end

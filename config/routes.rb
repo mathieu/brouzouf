@@ -1,12 +1,16 @@
 Brouzouf::Application.routes.draw do
+
   resources :bids
 
     
   resources :bets do
   
+    member do
+      post 'set_bet_open', 'set_bet_close', 'set_bet_creation'
+    end
+
     resources :choices, :only => [:new, :create, :update, :destroy, :edit]
-  
-    
+
   end
   
   get "home/index"
