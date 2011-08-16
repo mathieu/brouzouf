@@ -58,7 +58,7 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     @bet.destroy
 
-    redirect_to(bets_url)
+    redirect_to(user_root_url)
   end
 
   def set_bet_open

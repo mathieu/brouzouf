@@ -16,7 +16,7 @@
 <%else%>
 	<ul>
 	<% current_user.bets.each do |bet| %>
-		<li> <%=bet.title%> - <%=link_to "Edit", edit_bet_path(bet) %> | <%=link_to "Show", bet_path(bet) %> </li>
+		<li> <%=bet.title%> - <%=link_to "Show", bet_path(bet) %> | <%=link_to "Edit", edit_bet_path(bet) %> | <%= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete %> </li>
 	<%end%>
 	</ul>
 <%end%>
