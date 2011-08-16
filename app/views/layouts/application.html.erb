@@ -11,7 +11,7 @@
   <div id="user_login_box" style="float:right">
 
     <% if user_signed_in? %>
-          <%= current_user.email %> |
+          Hello <b><%= current_user.name %></b> |
           <%= link_to 'My account', user_root_path %> |
           <%= link_to 'Sign out', destroy_user_session_path %>
       <% end %>
