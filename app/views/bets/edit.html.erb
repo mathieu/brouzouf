@@ -7,7 +7,7 @@
 <%= link_to "Add Choice for this bet", new_bet_choice_url(@bet)  %>
 
 <%if @bet.choices.count == 0 %>
-	No choice for this bet.
+	<p>No choice for this bet.</p>
 <%else%>
 	<% @bet.choices.each do |choice| %>
 		<ul>
