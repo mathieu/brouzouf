@@ -6,7 +6,7 @@ Brouzouf::Application.routes.draw do
   resources :bets do
   
     member do
-      post 'set_bet_open', 'set_bet_close', 'set_bet_creation'
+      post 'set_bet_open', 'set_bet_close', 'set_bet_creation', 'make_a_bid'
     end
 
     resources :choices, :only => [:new, :create, :update, :destroy, :edit]
