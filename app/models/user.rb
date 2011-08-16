@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value OR lower(email) = :value", {:value => login.downcase}]).first
+    where(conditions).where(["lower(name) = :value OR lower(email) = :value", {:value => login.downcase}]).first
   end
 
   # Attempt to find a user by it's email. If a record is found, send new
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_record(login)
-    where(["username = :value OR email = :value", {:value => login}]).first
+    where(["name = :value OR email = :value", {:value => login}]).first
   end
 
 
