@@ -9,10 +9,8 @@
 <body>
 <div id="header">
   <div id="user_login_box" style="float:right">
-
     <% if user_signed_in? %>
-          Hello <b><%= current_user.name %></b> |
-          <%= link_to 'My account', user_root_path %> |
+          Hello <b><%= link_to current_user.name, user_root_path %></b> |
           <%= link_to 'Sign out', destroy_user_session_path %>
       <% end %>
       <% unless user_signed_in? %>
@@ -21,6 +19,7 @@
           <%= link_to 'Sign Up', new_user_registration_path %>
      <% end %>
     </div>
+  <div id="logo"><h1><%= link_to 'Brouzouf', root_path %></h1><hr></div>
 </div>
 <p class="notice"><%= notice %></p>
 
