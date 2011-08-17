@@ -5,9 +5,15 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# for heroku uncomment
-# gem 'pg'
-gem 'sqlite3'
+# heroku uses PostgreSQL
+group :production do
+  gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
 
 gem 'devise', '1.3.4'
 
