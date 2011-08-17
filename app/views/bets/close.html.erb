@@ -1,0 +1,39 @@
+<h1>Closing bet</h1>
+<h1><%= @bet.title %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @bet.description %>
+</p>
+
+<p>
+  <b>Expiration date:</b>
+  <%= @bet.expiration_date %>
+</p>
+
+<h2>Choices</h2>
+
+<%= form_tag(:controller => "bets", :action => "close_bid", :method => "post") do %>
+
+    <% nb_bids=0 %>
+    <ul>
+        <% @bet.choices.each do |choice| %>
+
+            <li>
+                <%= radio_button_tag(:choice_id, choice.id, true) %>
+                <%= label_tag(:age_child, choice.description) %>
+                (<%= pluralize(choice.bids.count, 'bid') %>)
+
+            </li>
+
+        <%end%>
+    </ul>
+
+    <%= submit_tag("Close Bet") if @bet.open? %>
+
+<%end%>
+
+
+
