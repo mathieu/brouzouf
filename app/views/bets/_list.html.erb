@@ -2,7 +2,7 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th>Expiration date</th>
+    <th>Remaining time</th>
     <th>User</th>
     <th></th>
   </tr>
@@ -12,7 +12,7 @@
   <tr>
     <td><%= bet.title %></td>
     <td><%= bet.description %></td>
-    <td><%= bet.expiration_date %></td>
+    <td><%= distance_of_time_in_words(Time.now,bet.expiration_date) %></td>
     <td><%= link_to bet.user.name, user_path(bet.user) %></td>
     <td><%= link_to 'Show', bet %></td>
   </tr>

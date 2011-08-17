@@ -1,14 +1,9 @@
-<h1>Brouzouf Home Page</h1>
 
-<% if(current_user )%>
-       <% @bets = Bet.find(:all) %>
-       <% if @bets.count == 0 %>
-            <%= render 'bets/list'%>
-       <% else %>
-            No open bets <%= link_to 'create one', new_bet_url %> !
-       <% end %>
+<% if @bets.count != 0 %>
+    <h1>Open bets</h1>
+    <%= render 'bets/list'%>
 <% else %>
-      Please Sign Up to see bets
+    No open bets <%= link_to 'create one', new_bet_url %> !
 <% end %>
 
 
