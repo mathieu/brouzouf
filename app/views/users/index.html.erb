@@ -11,20 +11,40 @@
 
 <h2>My Bets</h2>
 
-<%if(current_user.bets.count == 0 )%>
+<% if ( @expired_bets_count > 0 ) %>
+    <strong> You have <%= pluralize(@expired_bets_count, 'bet') %> that needs to be closed !</strong>
+<% end %>
+
+<% if(current_user.bets.count == 0 ) %>
 	No bet created yet. <%= link_to "Create your first bet now !", new_bet_url%> 
-<%else%>
-	<ul>
+<% else %>
+	<table>
+      <tr><th>Title</th><th>Status</th><th>Actions</th></tr>
 	<% current_user.bets.each do |bet| %>
-		<li> <%=bet.title%> - <%=link_to "Show", bet_path(bet) %> | <%=link_to "Edit", edit_bet_path(bet) %> | <%= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete %> </li>
-	<%end%>
-	</ul>
-<%end%>
+        <tr>
+            <td><%= bet.title %> </td>
+            <td><%= bet.state %>
+
+            <% if bet.expired? & !bet.closed? %>[EXPIRED]<% end %>
+            </td>
+            <td>
+              <% if bet.open? %>
+                  <%=link_to "Close", close_bet_path(bet) %>,
+              <% end %>
+              <% if bet.editable? %>
+                  <%=link_to "Edit", edit_bet_path(bet) %>,
+              <% end %>
+              <%=link_to "Show", bet_path(bet) %>, <%= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete %>
+            </td>
+          </tr>
+	<% end %>
+	</table>
+<% end %>
 
 <h2>My Bids</h2>
 <ul>
   <% current_user.bids.each do |bid| %>
-		<li> <%=bid.created_at%> - <b><%=bid.choice.description%></b> on  <%= link_to bid.choice.bet.title, bid.choice.bet%> </li>
-	<%end%>
+		<li> <%=bid.created_at%> - <b><%= bid.choice.description %></b> on  <%= link_to bid.choice.bet.title, bid.choice.bet %> </li>
+	<% end %>
 </ul>
 

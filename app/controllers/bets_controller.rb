@@ -118,6 +118,30 @@ class BetsController < ApplicationController
   end
 
 
+  def close
+    logger.debug "Closing bet"
+    @bet = Bet.find(params[:id])
+  end
+
+  def close_bid
+    logger.debug "Closing bet with winning bid"
+
+    bet = Bet.find(params[:id])
+
+    bet.state = 'CLOSED'
+
+    bet.choice_id = :choice_id
+
+    bet.closed_at = Time.now
+
+    #TODO update winnings for users that had a bid on this choice
+
+    if(bet.save)
+      redirect_to(user_root_url, :notice => 'Your bet was successfully closed')
+    end
+
+
+  end
   
   
 end

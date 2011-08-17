@@ -8,19 +8,6 @@
     <%end%>
 <%end%>
 
-<%if @bet.state == "OPEN" %>
-    <%= form_tag(:controller => "bets", :action => "set_bet_close", :method => "post") do %>
-        <%= submit_tag("Close Bet") %>
-    <%end%>
-<%end%>
-
-<%if @bet.state == "CLOSE" %>
-    <%= form_tag(:controller => "bets", :action => "set_bet_open", :method => "post") do %>
-        <%= submit_tag("Open Bet") %>
-    <%end%>
-<%end%>
-
-
 <h2>Choices</h2>
 
 <%= link_to "Add Choice for this bet", new_bet_choice_url(@bet)  %>

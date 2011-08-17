@@ -8,7 +8,7 @@
   </tr>
 
 <% @bets.each do |bet| %>
-<% if bet.state == 'OPEN' %>
+<% if bet.state == 'OPEN' && bet.expiration_date > Time.now%>
   <tr>
     <td><%= bet.title %></td>
     <td><%= bet.description %></td>
