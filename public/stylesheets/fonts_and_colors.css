@@ -21,4 +21,6 @@ h1 {color: #224900}
 
 
 #hd { height:80px; background-color: #C7FF96; }
-#hd a {color: #5F7A47}
+
+#hd h1 {color: #5F7A47; font-size: 3em; font-family: 'Marvel', sans-serif; padding: 5px}
+
