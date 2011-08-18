@@ -31,6 +31,7 @@ input[type="submit"] {
 #hd #sign { margin: 35px 5px 0 0;}
 
 
-#choices li {list-style: none; margin-left: 5px;}
+.choices li {list-style: none; margin-left: 5px;}
+.choices  .winner {background-color: #C3FA7C }
 
 
