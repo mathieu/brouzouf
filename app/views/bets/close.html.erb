@@ -18,7 +18,7 @@
 <%= form_tag(:controller => "bets", :action => "close_bid", :method => "post") do %>
 
     <% nb_bids=0 %>
-    <ul id="choices">
+    <ul class="choices">
         <% @bet.choices.each do |choice| %>
 
             <li>

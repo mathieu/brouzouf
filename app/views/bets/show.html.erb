@@ -8,8 +8,12 @@
 </p>
 
 <p>
-  <b>Expiration date:</b>
-  <%= @bet.expiration_date %>
+  <% if @bet.closed? %>
+    <b>Bet closed</b>
+  <% else %>
+    <b>Expiration date:</b>
+    <%= @bet.expiration_date %>
+  <% end %>
 </p>
 
 <p>
@@ -25,24 +29,38 @@
 	<p>No choice for this bet.</p>
 <%else%>
 
-    <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
+    <% if !@bet.closed? %>
 
-        <% nb_bids=0 %>
-        <ul id="choices">
-            <% @bet.choices.each do |choice| %>
+        <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
-			    <li>
-                    <%= radio_button_tag(:choice_id, choice.id, true) %>
-                    <%= label_tag(:age_child, choice.description) %>
-                    (<%= pluralize(choice.bids.count, 'bid') %>)
+            <% nb_bids=0 %>
+            <ul id="choices">
+                <% @bet.choices.each do |choice| %>
 
-                </li>
+	    		    <li>
+                        <%= radio_button_tag(:choice_id, choice.id, true) %>
+                        <%= label_tag(:age_child, choice.description) %>
+                        (<%= pluralize(choice.bids.count, 'bid') %>)
 
-	        <%end%>
-        </ul>
+                    </li>
 
-        <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+	            <%end%>
+            </ul>
 
-    <%end%>
+            <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+        <%end%>
+
+    <% else %>
+
+          <ul class="choices">
+                <% @bet.choices.each do |choice| %>
+	    		    <li class="<%= "winner" if @bet.choice.id == choice.id%>">
+                        <%= choice.description %>
+                        (<%= pluralize(choice.bids.count, 'bid') %>)
+                    </li>
+	            <%end%>
+            </ul>
+
+    <% end %>
 
 <%end%>
