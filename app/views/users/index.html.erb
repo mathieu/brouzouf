@@ -9,6 +9,10 @@
 
 </ul>
 
+<p>
+  Vous avez  <%= pluralize(current_user.brouzouf, "brouzouf")%> !
+</p>
+
 <h2>My Bets</h2>
 
 <% if ( @expired_bets_count > 0 ) %>
