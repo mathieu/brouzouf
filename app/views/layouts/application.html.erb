@@ -18,7 +18,7 @@
 
    <div id="hd"  role="banner">
 
-         <div style="float:right">
+         <div id="sign" style="float:right">
          <% if user_signed_in? %>
               Hello <b><%= link_to current_user.name, user_root_path %></b> |
               <%= link_to 'Sign out', destroy_user_session_path %>
