@@ -28,7 +28,7 @@
     <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
         <% nb_bids=0 %>
-        <ul>
+        <ul id="choices">
             <% @bet.choices.each do |choice| %>
 
 			    <li>
@@ -41,7 +41,7 @@
 	        <%end%>
         </ul>
 
-        <%= submit_tag("Make a bid") if @bet.state == "OPEN" %>
+        <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
 
     <%end%>
 
