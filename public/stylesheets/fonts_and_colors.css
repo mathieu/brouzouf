@@ -16,13 +16,20 @@ a:visited { color: #F32A6A; }
 a:hover { color: #FF96B7; background-color:#794757; }
 
 
-h1 {color: #224900}
+h1 {color: #B317DA; font-size: 2.0em;}
+h2 { color: #73088E; font-size: 1.4em;}
 
+input[type="submit"] {
+  font-size: 16px;
+    padding: 8px;
+}
 
 /*Header*/
-
 #hd { background-color: #C7FF96; }
-
-#hd h1 {color: #5F7A47; font-size: 3em; font-family: 'Marvel', sans-serif; padding: 5px}
+#hd h1 {color: #5F7A47; font-size: 3.4em; font-family: 'Marvel', sans-serif; padding: 5px; margin: 0}
 #hd #sign { margin: 35px 5px 0 0;}
+
+
+#choices li {list-style: none; margin-left: 5px;}
+
 
