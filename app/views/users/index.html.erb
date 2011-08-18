@@ -48,7 +48,7 @@
 <h2>My Bids</h2>
 <ul>
   <% current_user.bids.each do |bid| %>
-		<li> <%=bid.created_at%> - <b><%= bid.choice.description %></b> on  <%= link_to bid.choice.bet.title, bid.choice.bet %> </li>
+		<li> <%=I18n.l bid.created_at, :format => :short%> - <b><%= bid.choice.description %></b> on  <%= link_to bid.choice.bet.title, bid.choice.bet %> </li>
 	<% end %>
 </ul>
 

@@ -12,7 +12,7 @@
     <b>Bet closed</b>
   <% else %>
     <b>Expiration date:</b>
-    <%= @bet.expiration_date %>
+    <%=  I18n.l @bet.expiration_date, :format => :short  %>
   <% end %>
 </p>
 
