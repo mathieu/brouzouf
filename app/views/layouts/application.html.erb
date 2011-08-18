@@ -1,31 +1,85 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>Brouzouf</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+   <title>Brouzouf</title>
+
+   <link rel="stylesheet" href="http://yui.yahooapis.com/combo?2.9.0/build/fonts/fonts-min.css&2.9.0/build/grids/grids-min.css&2.9.0/build/base/base-min.css" type="text/css">
+   <link href='http://fonts.googleapis.com/css?family=Marvel:700' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
 </head>
-<body>
-<div id="header">
-  <div id="user_login_box" style="float:right">
-    <% if user_signed_in? %>
-          Hello <b><%= link_to current_user.name, user_root_path %></b> |
-          <%= link_to 'Sign out', destroy_user_session_path %>
-      <% end %>
-      <% unless user_signed_in? %>
 
-          <%= link_to 'Sign In', new_user_session_path %> |
-          <%= link_to 'Sign Up', new_user_registration_path %>
-     <% end %>
+<body class="yui-skin-sam">
+
+<div id="doc" class="yui-t7">
+
+   <div id="hd"  role="banner">
+
+         <div style="float:right">
+         <% if user_signed_in? %>
+              Hello <b><%= link_to current_user.name, user_root_path %></b> |
+              <%= link_to 'Sign out', destroy_user_session_path %>
+          <% end %>
+          <% unless user_signed_in? %>
+
+              <%= link_to 'Sign In', new_user_session_path %> |
+              <%= link_to 'Sign Up', new_user_registration_path %>
+         <% end %>
+        </div>
+
+        <h1>BROZOUF</h1>
+
+   </div>
+
+
+   <div id="bd" role="main">
+
+     <div class="navbar yui-g">
+
+        <ul>
+          <li><%= link_to 'Homepage', root_path %></li>
+          <li>Bets</li>
+          <li>Bidders</li>
+        </ul>
+
+     </div>
+
+     <div class="yui-g">
+
+        <p class="notice"><%= notice %></p>
+
+        <p class="alert"><%= alert %></p>
+
+        <%= yield %>
+
+     </div>
+
+
+     <!--  2 COLUMNS 66/33
+        <div class="yui-gc">
+			<div class="yui-u first">
+			1ER cloc
+			</div>
+			<div class="yui-u">
+			 YOUR DATA GOES HERE
+			2iem bloc
+		   </div>
+		</div>
+    -->
+
+
+
+	</div>
+
+    <div id="ft" role="contentinfo">
+      <!--<p>Copyright Brouzouf Corp 2011</p>-->
     </div>
-  <div id="logo"><h1><%= link_to 'Brouzouf', root_path %></h1><hr></div>
+
+
 </div>
-<p class="notice"><%= notice %></p>
-
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
 
 </body>
 </html>
