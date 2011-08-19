@@ -47,7 +47,13 @@
 	            <%end%>
             </ul>
 
-            <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+            <% if current_user.brouzouf > 0 %>
+                <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+            <% else %>
+                You have no more brouzouf !
+            <% end %>
+
+
         <%end%>
 
     <% else %>

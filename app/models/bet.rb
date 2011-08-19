@@ -3,7 +3,7 @@ class Bet < ActiveRecord::Base
   has_many :choices
   has_one :choice
 
-  after_save :update_users_stats
+  after_save :add_brouzouf
 
   def expired?
     expiration_date < Time.now
@@ -27,8 +27,8 @@ class Bet < ActiveRecord::Base
 
   private
 
-  def update_users_stats
-    logger.debug "Check if user just closed the bet then generate stats"
+  def add_brouzouf
+    logger.debug "Check if user just closed the bet then add brouzouf"
 
     if(state_was == "OPEN" and closed?)
       logger.debug "Bet is now CLOSED"
@@ -43,8 +43,8 @@ class Bet < ActiveRecord::Base
         end
 
     end
-
   end
+
 
 end
 
