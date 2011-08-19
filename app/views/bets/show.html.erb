@@ -40,7 +40,16 @@
 	    		    <li>
                         <%= radio_button_tag(:choice_id, choice.id, true) %>
                         <%= label_tag(:age_child, choice.description) %>
-                        (<%= pluralize(choice.bids.count, 'bid') %>)
+
+
+
+                        | <%= pluralize(choice.bids.count, 'bid') %>
+                        | ratio : <%= (1 + @bet.ratio_for_this_choice(choice.id))*100 %>
+                        | lossing : <%= @bet.loosing_brouzouf(choice.id) %>
+                        | winning : <%= @bet.winning_brouzouf(choice.id) %>
+
+
+
 
                     </li>
 
