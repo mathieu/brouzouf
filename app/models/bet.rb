@@ -33,22 +33,17 @@ class Bet < ActiveRecord::Base
 
   # summ brouzouf bids in other choices
   def loosing_brouzouf(id_choice)
-    logger.debug "B ************************"
-    #result = Bid.sum(:value, :conditions => "bet_id =" + self.id.to_s + " and choice_id != " + id_choice.to_s)
-    result = Bid.sum(:value, :conditions => ['bet_id ==' + self.id.to_s])
-    logger.debug "E ************************"
-
-    return result
+    Bid.where("bet_id = ? and choice_id != ?", self.id, id_choice).sum(:brouzouf)
   end
 
   def winning_brouzouf(id_choice)
-    Bid.where("bet_id = ? and choice_id = ?", self.id, id_choice).sum(:value)
+    Bid.where("bet_id = ? and choice_id = ?", self.id, id_choice).sum(:brouzouf)
   end
 
 
   #TODO put in database
   def total_brouzouf
-     Bid.where(:bet_id => this.id).sum(:value)
+     Bid.where(:bet_id => this.id).sum(:brouzouf)
   end
 
   private
@@ -65,7 +60,7 @@ class Bet < ActiveRecord::Base
       Bid.where(:choice_id => self.choice.id).each do |bid|
         logger.debug "1 more brouzouf for " + user.name
         user = bid.user
-        user.brouzouf = user.brouzouf + bid.value * (1 + ratio_for_this_choice(self.choice.id))
+        user.brouzouf = user.brouzouf + bid.brouzouf * (1 + ratio_for_this_choice(self.choice.id))
         user.save
       end
 

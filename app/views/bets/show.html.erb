@@ -11,8 +11,8 @@
   <% if @bet.closed? %>
     <b>Bet closed</b>
   <% else %>
-    <b>Expiration date:</b>
-    <%=  I18n.l @bet.expiration_date, :format => :short  %>
+    <b>Expiration :</b>
+      <%= distance_of_time_in_words(Time.now, @bet.expiration_date) %>
   <% end %>
 </p>
 
@@ -33,27 +33,22 @@
 
         <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
-            <% nb_bids=0 %>
+
             <ul id="choices">
                 <% @bet.choices.each do |choice| %>
 
 	    		    <li>
-                        <%= radio_button_tag(:choice_id, choice.id, true) %>
-                        <%= label_tag(:age_child, choice.description) %>
+                        <span>
+                            <%= radio_button_tag(:choice_id, choice.id, true) %>
+                            <%= label_tag(:choice_id, choice.description) %>
+                        </span>
 
-
-
-                        | <%= pluralize(choice.bids.count, 'bid') %>
-                        | ratio : <%= (1 + @bet.ratio_for_this_choice(choice.id))*100 %>
-                        | lossing : <%= @bet.loosing_brouzouf(choice.id) %>
-                        | winning : <%= @bet.winning_brouzouf(choice.id) %>
-
-
-
+                        <%= pluralize(choice.bids.count, 'bid') %> |
+                        ratio : <%= sprintf( "%5.2f" , (1 + @bet.ratio_for_this_choice(choice.id))) %>
 
                     </li>
 
-	            <%end%>
+	            <% end %>
             </ul>
 
             <% if current_user.brouzouf > 0 %>
