@@ -34,7 +34,7 @@
         <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
 
-            <ul id="choices">
+            <ul class="choices">
                 <% @bet.choices.each do |choice| %>
 
 	    		    <li>
@@ -65,7 +65,9 @@
           <ul class="choices">
                 <% @bet.choices.each do |choice| %>
 	    		    <li class="<%= "winner" if @bet.choice.id == choice.id%>">
+                      <span>
                         <%= choice.description %>
+                      </span>
                         (<%= pluralize(choice.bids.count, 'bid') %>)
                     </li>
 	            <%end%>
