@@ -8,7 +8,6 @@ class UsersController < Devise::SessionsController
  #user homepage 
  def index
    logger.debug 'User HomePage actions'
-  # @expired_bets = current_user.bets.find(WHERE expiration_date < Time.now)
     @expired_bets_count = current_user.bets.where("expiration_date < ? AND state = 'OPEN' ", Time.now).count
  end
  
@@ -16,6 +15,9 @@ class UsersController < Devise::SessionsController
     logger.debug 'Public user display'
     @user = User.find(params[:id])
   end
- 
+
+  def list
+    @bidders = User.find(:all, :order => "brouzouf")
+  end
  
 end
