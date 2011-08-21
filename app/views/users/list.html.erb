@@ -1,0 +1,19 @@
+<h1>Bidders list</h1>
+
+<table>
+    <tr>
+      <th>Bidder name</th>
+      <th>Bets created</th>
+      <th>Brouzouf</th>
+    </tr>
+
+  <% @bidders.each  do |user| %>
+     <tr>
+       <td><%= user.name %></td>
+       <td><%= user.bets.count %></td>
+       <td><%= user.brouzouf %></td>
+     </tr>
+
+<% end %>
+
+</table>

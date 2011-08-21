@@ -109,6 +109,8 @@ class BetsController < ApplicationController
     bid = Bid.new()
     bid.user = current_user
     bid.choice = choice
+    bid.bet = choice.bet
+    bid.brouzouf = 1
 
     if(bid.save)
       redirect_to(bet_url(choice.bet.id), :notice => 'Your bid was successfully saved')

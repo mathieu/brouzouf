@@ -13,16 +13,23 @@ Brouzouf::Application.routes.draw do
     resources :choices, :only => [:new, :create, :update, :destroy, :edit]
 
   end
-  
+
   get "home/index"
 
   devise_for :users do
   
-    #:controllers => { :sessions => 'users/sessions' } 
     get 'users', :to => 'users#index', :as => :user_root # Rails 3
     match '/users/show/:id', :to => 'users#show',    :as => :user,         :via => :get
-  
+    #match '/users/list', :controller => '/list'
+    match '/users/list' => 'users#list', :via => :get
+
   end
+
+ # resources :users do
+ #   collection do
+ #     get 'list'
+ #   end
+ # end
 
   root :to => "home#index"
 
