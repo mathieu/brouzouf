@@ -1,6 +1,8 @@
 class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :choice
+  belongs_to :bet
+
 
   after_save :remove_brouzouf
 
