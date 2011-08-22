@@ -10,7 +10,7 @@
 <%else%>
 	<ul>
 	<% @user.bets.each do |bet| %>
-		<li><%=link_to bet.title, bet_path%></li>
+		<li><%=link_to bet.title, bet%></li>
 	<%end%>
 	</ul>
 <%end%>
