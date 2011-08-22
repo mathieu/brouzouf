@@ -9,7 +9,7 @@
 
   <% @bidders.each  do |user| %>
      <tr>
-       <td><%= user.name %></td>
+       <td><%= link_to user.name, user %></td>
        <td><%= user.bets.count %></td>
        <td><%= user.brouzouf %></td>
      </tr>
