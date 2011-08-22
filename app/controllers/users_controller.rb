@@ -17,7 +17,7 @@ class UsersController < Devise::SessionsController
   end
 
   def list
-    @bidders = User.find(:all, :order => "brouzouf")
+    @bidders = User.find(:all, :order => "brouzouf desc")
   end
  
 end
