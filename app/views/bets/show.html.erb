@@ -51,11 +51,20 @@
 	            <% end %>
             </ul>
 
-            <% if current_user.brouzouf > 0 %>
-                <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+            <% if user_signed_in? %>
+
+                <% if current_user.brouzouf > 0 %>
+                    <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+                <% else %>
+                    You have no more brouzouf !
+                <% end %>
+
             <% else %>
-                You have no more brouzouf !
-            <% end %>
+
+                You have to <%= link_to 'create an account', new_user_registration_path %> or <%= link_to 'sign in', new_user_session_path %> to participate.
+
+            <%end%>
+
 
 
         <%end%>
