@@ -26,7 +26,7 @@ input[type="submit"] {
 
 /*Header*/
 #hd { background-color: #C7FF96; }
-#hd h1 {color: #5F7A47; font-size: 3.4em; font-family: 'Marvel', sans-serif; padding: 5px; margin: 0}
+#hd h1 {color: #5F7A47; font-size: 3.4em; font-family: /*'Marvel'*/ 'Fontdiner Swanky', sans-serif; padding: 5px; margin: 0}
 #hd h1 a {color: inherit; text-decoration: none;}
 #hd #sign { margin: 35px 5px 0 0;}
 
