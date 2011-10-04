@@ -3,11 +3,6 @@
 <html>
 <head>
    <title>Brouzouf</title>
-
-  <!-- Combo-handled YUI CSS files: -->
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.9.0/build/fonts/fonts-min.css&2.9.0/build/grids/grids-min.css&2.9.0/build/base/base-min.css&2.9.0/build/menu/assets/skins/sam/menu.css">
-  <!-- Combo-handled YUI JS files: -->
-  <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.9.0/build/yahoo-dom-event/yahoo-dom-event.js&2.9.0/build/container/container_core-min.js&2.9.0/build/menu/menu-min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Marvel:700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel='stylesheet' type='text/css'>
 
@@ -17,12 +12,12 @@
   <%= csrf_meta_tag %>
 </head>
 
-<body class="yui-skin-sam">
+<body>
 
 
-<%= link_to image_tag("report_issue_github.png", :style=>"position:absolute; top:0; right:0; border:0;", :alt=>'Report issue on GitHub' ), "http://github.com/mathieu/brouzouf/issues" %>
+<%= link_to image_tag("report_issue_github.png", :style=>"position:absolute; top:0; left:0; border:0;", :alt=>'Report issue on GitHub' ), "http://github.com/mathieu/brouzouf/issues" %>
 
-<div id="doc" class="yui-t7">
+<div id="doc">
 
    <div id="hd"  role="banner">
 
@@ -42,18 +37,16 @@
 
    </div>
 
+	<br/>
 
-   <div id="bd" role="main">
-
-     <div id="basicmenu" class="yuimenu">
-	    <div class="bd">
-	        <ul class="first-of-type">
-	            <li class="yuimenuitem"><%= link_to 'Bidders', users_list_url %></li>
-	        </ul>
-	    </div>
-	</div>
-
-     <div class="yui-g">
+   <div id="menu" >
+		<ul >
+		    <li class="menuitem"><%= link_to 'Bidders', users_list_url %></li>
+		    <li class="menuitem"><%= link_to 'Open Bets', root_path %></li>
+		</ul>
+    </div>
+	
+    <div class="main" role="main">
 
         <p class="notice"><%= notice %></p>
 
@@ -62,6 +55,7 @@
         <%= yield %>
 
      </div>
+
 
 
      <!--  2 COLUMNS 66/33
@@ -78,7 +72,7 @@
 
 
 
-	</div>
+
 
     <div id="ft" role="contentinfo">
       <!--<p>Copyright Brouzouf Corp 2011</p>-->
