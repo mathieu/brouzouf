@@ -2,8 +2,10 @@
 	<p>No choice for this bet.</p>
 <%else%>
 	<% @bet.choices.each do |choice| %>
-		<ul>
-			<li><%=choice.description%> - <%= link_to 'Edit', edit_bet_choice_url(@bet, choice) %></li>
-		</ul>
+        <% unless choice.id.nil? %>
+            <ul>
+                <li><%=choice.description%> - <%= link_to 'Edit', edit_bet_choice_url(@bet, choice) %></li>
+            </ul>
+        <% end %>
 	<%end%>
 <%end%>
