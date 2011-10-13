@@ -15,9 +15,11 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
+    <input id="continue" name="continue" type="hidden" value="false" />
   </div>
   
   <div class="actions">
     <%= f.submit %>
+    <%= f.submit("Create and Continue", :onclick => "document.getElementById('continue').value=true;")  %>
   </div>
 <% end %>

@@ -24,8 +24,8 @@ a:visited { color: #F32A6A; }
 a:hover { color: #FF0000; background-color:#C7AAAA; }
 
 
-h1 { color: #B317DA; font-size: 2.0em; font-family: /*'Marvel'*/ 'Fontdiner Swanky', sans-serif;}
-h2 { color: #73088E; font-size: 1.4em; font-family: /*'Marvel'*/ 'Fontdiner Swanky', sans-serif;}
+h1 { margin: 0px 0 20px 0; color: #B317DA; font-size: 2.0em; font-family: /*'Marvel'*/ 'Fontdiner Swanky', sans-serif;}
+h2 { margin: 20px 0 20px 0; color: #73088E; font-size: 1.4em; font-family: /*'Marvel'*/ 'Fontdiner Swanky', sans-serif;}
 
 input[type="submit"] {
   font-size: 16px;

@@ -24,7 +24,7 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     
     if(@bet.user != current_user)
-      redirect_to( "/users", :alert => "You don't have rigth to modify this bet.")
+      redirect_to( user_root_url, :alert => "You don't have rigth to modify this bet.")
     end  
       
   end
@@ -37,7 +37,8 @@ class BetsController < ApplicationController
     @bet.user = current_user
 
     if @bet.save
-      redirect_to(user_root_url, :notice => 'Bet was successfully created.')
+      #redirect_to :action => "new", :id => @bet.id
+      redirect_to(new_bet_choice_url(@bet.id) , :notice => 'Bet was successfully created, Add a choice.')
     else
       render :action => "new"
     end

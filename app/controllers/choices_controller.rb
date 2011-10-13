@@ -23,7 +23,11 @@ class ChoicesController < ApplicationController
     @choice.bet = @bet
     
     if @choice.save
-      redirect_to(edit_bet_path(@bet), :notice => 'Choice was successfully created.')
+      if (params[:continue]=='true')
+        redirect_to(new_bet_choice_url(@bet), :notice => 'Choice was successfully created, please add another one.')
+      else
+        redirect_to(edit_bet_path(@bet), :notice => 'Choice was successfully created.')
+      end
     else
       render :action => "new"
     end
