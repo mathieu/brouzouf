@@ -37,8 +37,12 @@
 
    <div id="menu" >
 		<ul >
-		    <li class="menuitem"><%= link_to 'Bidders', users_list_url %></li>
 		    <li class="menuitem"><%= link_to 'Open Bets', root_path %></li>
+            <li class="menuitem"><%= link_to 'New Bet', new_bet_url %></li>
+            <% if user_signed_in? %>
+              <li class="menuitem"><%= link_to 'My Bets', user_url(current_user) %></li>
+            <% end %>
+
 		</ul>
     </div>
 	
@@ -51,23 +55,6 @@
         <%= yield %>
 
      </div>
-
-
-
-     <!--  2 COLUMNS 66/33
-        <div class="yui-gc">
-			<div class="yui-u first">
-			1ER cloc
-			</div>
-			<div class="yui-u">
-			 YOUR DATA GOES HERE
-			2iem bloc
-		   </div>
-		</div>
-    -->
-
-
-
 
 
     <div id="ft" role="contentinfo">

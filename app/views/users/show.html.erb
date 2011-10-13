@@ -5,12 +5,4 @@
 
 <h2>Bets listing</h2>
 
-<%if(@user.bets.count == 0 )%>
-	No bet created yet. 
-<%else%>
-	<ul>
-	<% @user.bets.each do |bet| %>
-		<li><%=link_to bet.title, bet%></li>
-	<%end%>
-	</ul>
-<%end%>
+<% render :partial => 'show_bets' %>
