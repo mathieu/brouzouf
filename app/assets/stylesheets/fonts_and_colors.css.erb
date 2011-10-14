@@ -1,13 +1,3 @@
-/*
-
-http://colorschemedesigner.com/#2.21TqqNh----
-
- Primary Color:
-89F32B	5F7A47	224900	C7FF96	F4FFEA
-Complementary Color:
-F32A6A	794757	490017	FF96B7	FFEAF1
-*/
-
 @import url(http://fonts.googleapis.com/css?family=Marvel:700);
 @import url(http://fonts.googleapis.com/css?family=Fontdiner+Swanky);
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
@@ -49,9 +39,9 @@ input[type="submit"] {
 #hd h1 a {color: inherit; }
 #hd #sign { margin: 35px 35px 0 0;}
 
-//#bd { background-color: #C7AAAA; -moz-border-radius: 15px; border-radius: 15px; }
-//#bd {color: #5F7A47; font-size: 1.4em; padding: 0px; margin: 0}
-//#bd a {color: inherit; text-decoration: none;}
+/*#bd { background-color: #C7AAAA; -moz-border-radius: 15px; border-radius: 15px; }
+#bd {color: #5F7A47; font-size: 1.4em; padding: 0px; margin: 0}
+#bd a {color: inherit; text-decoration: none;}*/
 
 #menu {
 	float: left;
@@ -75,7 +65,7 @@ input[type="submit"] {
 	
 }
 #menu a {
-	background: #C7AAAA /*url("/images/seperator.gif")*/ bottom right no-repeat;
+	background: #C7AAAA bottom right no-repeat;
 	color: #5F7A47;
 	//display: block;
 	float: left;
@@ -85,7 +75,7 @@ input[type="submit"] {
 	
 }
 #menu a:hover {
-	background: #2580a2 <% asset_path "hover.gif" %> bottom center no-repeat;
+	background: #2580a2  url(<%= asset_path 'hover.gif' %>) bottom center no-repeat;
 	color: #fff;
 	padding-bottom: 8px;      
 }
