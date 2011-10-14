@@ -14,6 +14,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+#1.3.4 has a annoying warning
+gem "rack", "1.3.3" 
 
 gem "devise", ">= 1.4.7"
 
