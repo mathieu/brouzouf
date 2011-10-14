@@ -85,7 +85,7 @@ input[type="submit"] {
 	
 }
 #menu a:hover {
-	background: #2580a2 url("/images/hover.gif") bottom center no-repeat;
+	background: #2580a2 <% asset_path "hover.gif" %> bottom center no-repeat;
 	color: #fff;
 	padding-bottom: 8px;      
 }
