@@ -6,3 +6,5 @@ tmp/
 .rvmrc
 brouzouf.esproj
 .DS_Store
+.sass-cache/
+public/assets/
