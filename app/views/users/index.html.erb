@@ -9,7 +9,7 @@
 </ul>
 
 <p>
-  Your credit : <strong><%= pluralize(current_user.brouzouf, "brouzouf") %></strong>
+  Your credit : <strong><%= pluralize(number_with_precision(current_user.brouzouf, :precision => 2) , "brouzouf") %></strong>
 </p>
 
 <h2>My Bets</h2>
