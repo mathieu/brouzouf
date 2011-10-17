@@ -14,7 +14,7 @@
 
 <h2>My Bets</h2>
 
-<% render :partial => 'show_bets' %>
+<%= render :partial => 'show_bets', :locals => {:user => current_user} %>
 
 <h2>My Bids</h2>
 <ul>

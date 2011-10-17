@@ -5,4 +5,4 @@
 
 <h2>Bets listing</h2>
 
-<% render :partial => 'show_bets' %>
+<%= render :partial => 'show_bets', :locals => {:user => @user} %>

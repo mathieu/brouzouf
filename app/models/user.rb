@@ -15,6 +15,26 @@ class User < ActiveRecord::Base
   has_many :bids, :order => "created_at"
 
 
+  def self.find_record(login)
+    where(["name = :value OR email = :value", {:value => login}]).first
+  end
+
+  def expired_bets
+    self.bets.where("expiration_date < ? AND state = 'OPEN' ", Time.now)
+  end
+
+  def open_bets
+    self.bets.where("expiration_date > ? AND state = 'OPEN' ", Time.now)
+  end
+
+  def draft_bets
+    self.bets.where("state = 'CREATION' ", Time.now)
+  end
+
+  def closed_bets
+    self.bets.where("state = 'CLOSE' ", Time.now)
+  end
+
   protected
 
   def self.find_for_database_authentication(warden_conditions)
@@ -59,9 +79,6 @@ class User < ActiveRecord::Base
     record
   end
 
-  def self.find_record(login)
-    where(["name = :value OR email = :value", {:value => login}]).first
-  end
 
 
 end
