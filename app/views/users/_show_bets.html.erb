@@ -1,0 +1,72 @@
+<% if (user.expired_bets.count > 0) %>
+    <strong>
+      <% if user == current_user%>
+          You have
+      <% else %>
+          <%= user.name %> has
+      <% end %>
+          <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</strong>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+      <% user.expired_bets.each do |bet| %>
+          <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
+      <% end %>
+    </table>
+<% end %>
+
+
+<% if (user.open_bets.size > 0) %>
+    <h2>Open Bets</h2>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+      <% user.open_bets.each do |bet| %>
+          <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
+      <% end %>
+    </table>
+<% end %>
+
+
+<% if (user.closed_bets.count > 0) %>
+    <h2>Closed Bets</h2>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+      <% user.closed_bets.each do |bet| %>
+          <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
+      <% end %>
+    </table>
+<% end %>
+
+
+<% if user == current_user %>
+
+    <% if (user.bets.count == 0) %>
+        No bet created yet. <%= link_to "Create your first bet now !", new_bet_url %>
+    <% else %>
+
+
+
+        <% if (user.draft_bets.count > 0) %>
+            <h2>Draft Bets</h2>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Actions</th>
+              </tr>
+              <% user.draft_bets.each do |bet| %>
+                  <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
+              <% end %>
+            </table>
+        <% end %>
+
+    <% end %>
+
+<% end %>

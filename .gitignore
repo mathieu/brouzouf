@@ -8,3 +8,5 @@ brouzouf.esproj
 .DS_Store
 .sass-cache/
 public/assets/
+
+db/development.sqlite3.old

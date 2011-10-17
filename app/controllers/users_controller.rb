@@ -1,16 +1,15 @@
-
-
 class UsersController < Devise::SessionsController
+
   def create
     super
   end
- 
- #user homepage 
- def index
-   logger.debug 'User HomePage actions'
-    @expired_bets_count = current_user.bets.where("expiration_date < ? AND state = 'OPEN' ", Time.now).count
- end
- 
+
+  #user homepage
+  def index
+    logger.debug 'User HomePage actions'
+    @user = current_user
+  end
+
   def show
     logger.debug 'Public user display'
     @user = User.find(params[:id])
@@ -19,5 +18,5 @@ class UsersController < Devise::SessionsController
   def list
     @bidders = User.find(:all, :order => "brouzouf desc")
   end
- 
+
 end

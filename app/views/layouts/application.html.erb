@@ -37,8 +37,12 @@
 
    <div id="menu" >
 		<ul >
-		    <li class="menuitem"><%= link_to 'Bidders', users_list_url %></li>
 		    <li class="menuitem"><%= link_to 'Open Bets', root_path %></li>
+            <li class="menuitem"><%= link_to 'New Bet', new_bet_url %></li>
+            <% if user_signed_in? %>
+              <li class="menuitem"><%= link_to 'My Bets', user_url(current_user) %></li>
+            <% end %>
+
 		</ul>
     </div>
 	
