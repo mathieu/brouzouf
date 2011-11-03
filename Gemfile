@@ -49,3 +49,5 @@ end
 # end
 
 gem "zurb-foundation"
+
+gem 'jquery-rails'
