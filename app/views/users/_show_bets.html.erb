@@ -1,20 +1,33 @@
 <% if (user.expired_bets.count > 0) %>
-    <strong>
+
+
       <% if user == current_user%>
-          You have
+        <div id="closedBetModal" class="reveal-modal">
+          <h2>Hi <%= user.name %> !</h2>
+          <p class="lead">You have <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</p>
+          <a class="close-reveal-modal">&#215;</a>
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#closedBetModal').reveal({closeOnBackgroundClick: true});
+          });
+        </script>
       <% else %>
-          <%= user.name %> has
+          <strong><%= user.name %> has <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</strong>
       <% end %>
-          <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</strong>
+
+
+
     <table>
       <tr>
-        <th>Title</th>
-        <th>Actions</th>
+        <th align="left">Title</th>
+        <th align="left">Actions</th>
       </tr>
       <% user.expired_bets.each do |bet| %>
           <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
       <% end %>
     </table>
+
 <% end %>
 
 
@@ -22,8 +35,8 @@
     <h2>Open Bets</h2>
     <table>
       <tr>
-        <th>Title</th>
-        <th>Actions</th>
+        <th align="left">Title</th>
+        <th align="left">Actions</th>
       </tr>
       <% user.open_bets.each do |bet| %>
           <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
@@ -36,8 +49,8 @@
     <h2>Closed Bets</h2>
     <table>
       <tr>
-        <th>Title</th>
-        <th>Actions</th>
+        <th align="left">Title</th>
+        <th align="left">Actions</th>
       </tr>
       <% user.closed_bets.each do |bet| %>
           <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
@@ -58,8 +71,8 @@
             <h2>Draft Bets</h2>
             <table>
               <tr>
-                <th>Title</th>
-                <th>Actions</th>
+                <th align="left">Title</th>
+                <th align="left">Actions</th>
               </tr>
               <% user.draft_bets.each do |bet| %>
                   <%= render :partial => 'show_bet', :locals => {:bet => bet} %>
