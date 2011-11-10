@@ -25,53 +25,55 @@
 <h2>Choices</h2>
 
 
-<%if @bet.choices.count == 0 %>
+<div class="row">
+<% if @bet.choices.count == 0 %>
 	<p>No choice for this bet.</p>
-<%else%>
+<% else %>
 
     <% if !@bet.closed? %>
 
         <%= form_tag(:controller => "bets", :action => "make_a_bid", :method => "post") do %>
 
+            <div class="twelve columns">
+                <div class="seven columns">
+                    <% @bet.choices.each do |choice| %>
 
-            <ul class="choices">
-                <% @bet.choices.each do |choice| %>
+                        <div>
+                            <%= radio_button_tag :choice_id, choice.id, true %>
+                            <%= choice.description %> (
+                            <%= pluralize(choice.bids.count, 'bid') %>
+                            <% if (choice.bids.count > 0) %> |
+                              ratio : <%= sprintf( "%5.2f" , (1 + @bet.ratio_for_this_choice(choice.id))) %>
+                            <% end %>
+                            )
+                        </div>
 
-	    		    <li>
-                        <span>
-                            <%= radio_button_tag(:choice_id, choice.id, true) %>
-                            <%= label_tag(:choice_id, choice.description) %>
-                        </span>
+                    <% end %>
+                </div>
 
-                        <%= pluralize(choice.bids.count, 'bid') %> |
-                        ratio : <%= sprintf( "%5.2f" , (1 + @bet.ratio_for_this_choice(choice.id))) %>
+                <% if user_signed_in? %>
+                    <div class="four columns">
 
-                    </li>
-
-	            <% end %>
-            </ul>
-
-            <% if user_signed_in? %>
-
-                <% if current_user.brouzouf > 0 %>
-                    <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
-                <% else %>
-                    You have no more brouzouf !
-                <% end %>
-
+                        <% if current_user.brouzouf > 0 %>
+                            <%= submit_tag("Make a bid", :class => "nice_button") if @bet.state == "OPEN" %>
+                        <% else %>
+                            You have no more brouzouf !
+                        <% end %>
+                    </div>
+                </div>
             <% else %>
+                </div>
+                <div class = "row"></div>
+                    <div class="alert">You have to <%= link_to 'create an account', new_user_registration_path %> or <%= link_to 'sign in', new_user_session_path %> to participate.</div>
+                </div>
 
-                You have to <%= link_to 'create an account', new_user_registration_path %> or <%= link_to 'sign in', new_user_session_path %> to participate.
+            <% end %>
 
-            <%end%>
-
-
-
-        <%end%>
+        <% end %>
 
     <% else %>
 
-          <ul class="choices">
+          <ul class="twelve columns">
                 <% @bet.choices.each do |choice| %>
 	    		    <li class="<%= "winner" if @bet.choice.id == choice.id%>">
                       <span>
@@ -83,5 +85,5 @@
             </ul>
 
     <% end %>
-
+</row>
 <%end%>
