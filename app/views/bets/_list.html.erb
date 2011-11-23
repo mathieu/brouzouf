@@ -9,7 +9,8 @@
 <% @bets.each do |bet| %>
 <% if bet.state == 'OPEN' && bet.expiration_date > Time.now%>
   <tr>
-    <td><%= link_to bet.title, bet %></td>
+    <td><%= link_to bet.title, bet %><br/>
+	    <%= link_to bet.title, bet_path(bet, :anchor => "disqus_thread") %></td>
     <td><%= bet.description %></td>
     <td><%= distance_of_time_in_words(Time.now,bet.expiration_date) %></td>
     <td><%= link_to bet.user.name, user_path(bet.user) %></td>
@@ -17,3 +18,17 @@
 <% end %>
 <% end %>
 </table>
+
+<script type="text/javascript">
+	var disqus_developer = 0; // developer mode is off
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'brouzouf'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
