@@ -2,16 +2,16 @@
 
 
       <% if user == current_user%>
-        <div id="closedBetModal" class="reveal-modal">
-          <h2>Hi <%= user.name %> !</h2>
-          <p class="lead">You have <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</p>
-          <a class="close-reveal-modal">&#215;</a>
+        <div class="alert alert-block alert-info fade in">      
+	        <a href="" class="close" data-dismiss="alert">&times;</a>
+          <h4 class="alert-heading">Hi <%= user.name %> !</h4>
+          <p>You have <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</p> 
+					<% user.expired_bets.each do |bet| %>  
+					   <%= link_to(close_bet_path(bet), :class => "btn btn-primary") do %>
+								<i class="icon-ok icon-white"></i> <%= bet.title %>
+					   <% end %>
+		      <% end %>
         </div>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('#closedBetModal').reveal({closeOnBackgroundClick: true});
-          });
-        </script>
       <% else %>
           <strong><%= user.name %> has <%= pluralize(user.expired_bets.count, 'bet') %> that needs to be closed !</strong>
       <% end %>

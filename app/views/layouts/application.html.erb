@@ -8,7 +8,8 @@
 
   <%= stylesheet_link_tag :application %>
   <%= javascript_include_tag :application %>
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tag %> 
+  <style> body {        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */      }    </style>          
 </head>
 
 <body>
@@ -43,16 +44,16 @@
 	</div>
   <div class="container">
 	  <div class="row">
-	 		<div class="span16">
+	 		<div class="span12">
 	      <% flash.each do |k, v| %>
 	          <!-- <%= k %> -->
 	          <% if k == :notice
-	                 k = "success"
+	                 k = "alert-success"
 	             elsif k == :alert
-	                 k = "warning"
+	                 k = "alert-error"
 	             end %>
-	          <div class="alert-box <%= k %>"><%= v %>
-	            <a href="" class="close">&times;</a></div>
+	          <div class="alert <%= k %> fade in"><%= v %>
+	            <a href="" class="close" data-dismiss="alert">&times;</a></div>
 	      <% end %>
 	                </div>
 	      </div>
@@ -60,24 +61,24 @@
 	            <div class="twelve columns">
 
 	      <%= yield %>
-	                   </div>
-	      </div>      
+	      </div>
+	    </div>      
     </div> 
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <div class="row">
-          <div class="span6">
+          <div class="span4">
             <p><strong>Brouzouf</strong> is a social betting site.</p>      
             <p><em>Please report any issue <a href="https://github.com/mathieu/brouzouf/issues">here</a> !</em></p>
 
           </div>
 
-          <div class="span5">
+          <div class="span4">
             <p>As you can see, <strong>Brouzouf</strong> is looking for a web <strong>Designer</strong>.</p><p> Thanks to <a href="http://twitter.github.com/bootstrap/">Boostrap</a> for the css.</p>
           </div>
 
-          <div class="span5">
+          <div class="span4">
             <p>© 2011 <a href="https://github.com/mathieu/brouzouf">Brouzouf</a>. All rights reserved.</p>
           </div>
         </div>

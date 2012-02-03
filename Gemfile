@@ -4,7 +4,7 @@ gem 'rails', '3.1.1'
 
 gem 'thin'
      
-gem 'twitter-bootstrap-rails', :group => :assets
+gem 'twitter-bootstrap-rails', "~> 2.0rc0",:group => :assets
 
 # heroku uses PostgreSQL
 group :production do
