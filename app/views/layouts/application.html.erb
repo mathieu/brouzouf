@@ -3,11 +3,6 @@
 <html>
 <head>
   <meta charset="utf-8" />
-
-      <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
   <title>Brouzouf</title>
 
 
@@ -17,100 +12,78 @@
 </head>
 
 <body>
+ 
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">   
+		  	<%= link_to 'Brouzouf', root_path , :class => "brand" %>
+		    <div class="nav-collapse">                                  
+					<ul class="nav">
+						<li><%= link_to 'Open Bets', root_path, :class => "active" %></li>
+		        <li><%= link_to 'New Bet', new_bet_url %></li>
+		        <% if user_signed_in? %>
+		           <li><%= link_to 'My Bets', user_url(current_user) %></li>
+		        <% end %> 
+					</ul>
+		      <ul class="nav pull-right">
+						<% if user_signed_in? %>
+	              <li>Hello <b><%= link_to current_user.name, user_root_path %></b></li>
+	              <li class="divider-vertical"/>
+								<li><%= link_to 'Sign out', destroy_user_session_path %> </li>
+	          <% end %>
+	          <% unless user_signed_in? %>
+	             <li><%= link_to 'Sign In', new_user_session_path, :class => "small radius white button" %></li>
+	             <li class="divider-vertical"/>
+	             <li><%= link_to 'Sign Up', new_user_registration_path, :class => "small radius white button" %></li>
+	          <% end %>
+					</ul>
+		  	</div>
+			</div>
+	  </div>
+	</div>
+  <div class="container">
+	  <div class="row">
+	 		<div class="span16">
+	      <% flash.each do |k, v| %>
+	          <!-- <%= k %> -->
+	          <% if k == :notice
+	                 k = "success"
+	             elsif k == :alert
+	                 k = "warning"
+	             end %>
+	          <div class="alert-box <%= k %>"><%= v %>
+	            <a href="" class="close">&times;</a></div>
+	      <% end %>
+	                </div>
+	      </div>
+	          <div class="row">
+	            <div class="twelve columns">
 
-
-
-  <div class="row">
-    <div class="twelve columns">
-      <div class="hide-on-phones"> <%= link_to image_tag("report_issue_github.png", :style=>"position:absolute; top:0; left:0; border:0;", :alt=>'Report issue on GitHub'), "http://github.com/mathieu/brouzouf/issues" %>
-      </div>
-      <div id="hd" role="banner">
-
-        <div id="sign" style="float:right">
-          <% if user_signed_in? %>
-              Hello <b><%= link_to current_user.name, user_root_path %></b> |
-              <%= link_to 'Sign out', destroy_user_session_path %>
-          <% end %>
-          <% unless user_signed_in? %>
-
-              <%= link_to 'Sign In', new_user_session_path, :class => "small radius white button" %>
-              <%= link_to 'Sign Up', new_user_registration_path, :class => "small radius white button" %>
-          <% end %>
-        </div>
-
-        <h1><%= link_to 'Brouzouf', root_path %></h1>
-
-      </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="twelve columns">
-      <div id="menu">
-        <ul>
-          <li class="menuitem"><%= link_to 'Open Bets', root_path %></li>
-          <li class="menuitem"><%= link_to 'New Bet', new_bet_url %></li>
-          <% if user_signed_in? %>
-              <li class="menuitem"><%= link_to 'My Bets', user_url(current_user) %></li>
-          <% end %>
-        </ul>
-      </div>
-      </div>
-      </div>
-
-      <div class="row">
-        <div class="twelve columns">
-      <% flash.each do |k, v| %>
-          <!-- <%= k %> -->
-          <% if k == :notice
-                 k = "success"
-             elsif k == :alert
-                 k = "warning"
-             end %>
-          <div class="alert-box <%= k %>"><%= v %>
-            <a href="" class="close">&times;</a></div>
-      <% end %>
-                </div>
-      </div>
-          <div class="row">
-            <div class="twelve columns">
-
-      <%= yield %>
-                   </div>
-      </div>
-
+	      <%= yield %>
+	                   </div>
+	      </div>      
+    </div> 
     <!-- FOOTER -->
-    <div id="footer">
-      <div class="row">
-        <div class="twelve columns">
-          <hr/>
-        </div>
-      </div>
-
-      <div class="hide-on-phones">
+    <footer class="footer">
+      <div class="container">
         <div class="row">
-          <div class="four columns">
-            <p><strong>Brouzouf</strong> is a social betting site.</p>
-          </div>
-
-          <div class="four columns">
-            <p>As you can see, <strong>Brouzouf</strong> is looking for a web <strong>Designer</strong>.</p><p> Thanks to <a href="http://foundation.zurb.com/">Foundation</a> for the css.</p>
-          </div>
-
-          <div class="four columns">
-            <p class="right">© 2011 <a href="https://github.com/mathieu/brouzouf">Brouzouf</a>. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-      <div class="show-on-phones">
-        <div class="row">
-          <div class="twelve columns">
-            <p>© 2011 <a href="https://github.com/mathieu/brouzouf">Brouzouf</a>. All rights reserved.</p>
+          <div class="span6">
+            <p><strong>Brouzouf</strong> is a social betting site.</p>      
             <p><em>Please report any issue <a href="https://github.com/mathieu/brouzouf/issues">here</a> !</em></p>
+
+          </div>
+
+          <div class="span5">
+            <p>As you can see, <strong>Brouzouf</strong> is looking for a web <strong>Designer</strong>.</p><p> Thanks to <a href="http://twitter.github.com/bootstrap/">Boostrap</a> for the css.</p>
+          </div>
+
+          <div class="span5">
+            <p>© 2011 <a href="https://github.com/mathieu/brouzouf">Brouzouf</a>. All rights reserved.</p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </footer>
+  </div> 
+
 </body>
 </html>
