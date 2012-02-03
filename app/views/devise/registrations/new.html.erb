@@ -1,8 +1,8 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :class => "form-horizontal") do |f| %>
   <%= devise_error_messages! %>
-
+<fieldset>
   <p><%= f.label :name %>
   <%= f.text_field :name, :class => "nice input-text" %></p>
 
@@ -14,8 +14,10 @@
 
   <p><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, :class => "nice input-text"%></p>
+	</fieldset>
 
-  <p><%= f.submit "Sign up", :class => "large button" %></p>
+  <p><%= f.submit "Sign up", :class => "btn btn-primary" %></p> 
+
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
